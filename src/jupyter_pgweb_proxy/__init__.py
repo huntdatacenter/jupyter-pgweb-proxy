@@ -20,7 +20,7 @@ def _get_env(port, base_url):
 
     return {
         "PGWEB_RUN_PORT": str(port),
-        "PGWEB_URL_PREFIX": f"{base_url}pgweb",
+        "PGWEB_URL_PREFIX": f"{base_url}pgweb/".lstrip("/"),
     }
 
 
@@ -70,6 +70,8 @@ def run_app():
             executable_name,
             f"--host={host}",
             "--listen={port}",
+            "--debug",
+            "--sessions",
         ],
         "timeout": 100,
         "environment": _get_env,
