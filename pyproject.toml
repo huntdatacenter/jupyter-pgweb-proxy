@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jupyter-pgweb-proxy"
+version = "0.0.1"
+authors = [
+  { name="Matus Kosut", email="matus.kosut@ntnu.no" },
+  { name="Hans Stemshaug", email="hans.stemshaug@ntnu.no" },
+]
+description = "A small example package"
+readme = "README.md"
+license = { file = "LICENSE.md" }
+requires-python = ">=3.8"
+dependencies = [
+    "jupyter-server-proxy>=3.2.2",
+]
+classifiers = [
+    "Framework :: Jupyter",
+    "Framework :: Jupyter :: JupyterLab",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+keywords = [
+    "Jupyter Proxy",
+    "Jupyter Server Proxy",
+    "JupyterLab",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/huntdatacenter/jupyter-pgweb-proxy"
+
+[project.optional-dependencies]
+dev = ["black", "ruamel.yaml", "pytest", "pytest-cov"]
+
+[project.entry-points.jupyter_serverproxy_servers]
+pgweb = "jupyter_pgweb_proxy:run_app"
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jupyter_pgweb_proxy"]
+
+[tool.hatch.build]
+sources = ["src"]
+artifacts = [
+  "*.svg",
+]
+
+[tool.hatch.build.targets.sdist]
+artifacts = []
+exclude = [".github"]
+
+[tool.hatch.build.targets.jupyter_pgweb_proxy]
