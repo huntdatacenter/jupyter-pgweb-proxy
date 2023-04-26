@@ -69,7 +69,7 @@ def run_app():
         "command": [
             executable_name,
             f"--host={host}",
-            "--port={port}",
+            "--listen={port}",
         ],
         "timeout": 100,
         "environment": _get_env,
