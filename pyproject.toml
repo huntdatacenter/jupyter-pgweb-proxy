@@ -9,7 +9,7 @@ authors = [
   { name="Matus Kosut", email="matus.kosut@ntnu.no" },
   { name="Hans Stemshaug", email="hans.stemshaug@ntnu.no" },
 ]
-description = "A small example package"
+description = "Jupyter server proxy for pgweb"
 readme = "README.md"
 license = { file = "LICENSE.md" }
 requires-python = ">=3.8"
