@@ -2,16 +2,15 @@ FROM jupyter/minimal-notebook:lab-3.6.1
 
 USER root
 RUN set -x \
-    && apt-get update \
-    && apt-get install -y curl postgresql-client
-
-WORKDIR /etc/pgweb
-COPY setup/config_system.py /etc/pgweb/config_system.py
+    && cd /tmp \
+    && wget -q https://github.com/sosedoff/pgweb/releases/download/v0.14.0/pgweb_linux_amd64.zip -O /tmp/pgweb.zip \
+    && unzip /tmp/pgweb.zip \
+    && mv /tmp/pgweb_linux_amd64 /usr/local/bin/pgweb \
+    && chmod a+rx /usr/local/bin/pgweb
 
 # setup package, enable classic extension, build lab extension
 # USER "${NB_USER}"
-RUN mamba install -q -c conda-forge -y uwsgi simple-websocket psycopg
-RUN python3 -m pip install pgweb
+RUN mamba install -q -c conda-forge -y psycopg
 RUN fix-permissions /opt/conda
 
 WORKDIR "${HOME}/jupyter-pgweb-proxy"
